@@ -1,13 +1,8 @@
 /**
- * 
- */
-
-/**
  * @author Naveed Kawsar
  *
  */
 public class Marathon {
-
 	/**
 	 * @param array of integers corresponding to runners' times
 	 * @return index corresponding to the lowest time
