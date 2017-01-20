@@ -1,15 +1,10 @@
-/**
- * 
- */
+
 /**
  * @author Naveed Kawsar
  *
  */
 public class AverageCalculator {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		double sum = 0;
 		System.out.printf("The %d numbers are:", args.length);
