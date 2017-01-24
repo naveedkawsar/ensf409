@@ -1,5 +1,4 @@
 import java.util.Scanner;
-//import java.util.Arrays;
 
 public class SinValidator {
 
@@ -46,7 +45,6 @@ private int sumDigit(int x)
 	public boolean validateSin()
 	{
 		
-		// THIS METHOD DOESN'T WORK. STUDENTS ARE EXPECTED TO COMPLTETE THIS METHOD
 		int check_digit = SIN[SIN.length-1];	// Ninth digit
 		int sum = 0;
 		boolean even_digit = true;				// First bit is the eighth digit
@@ -61,12 +59,7 @@ private int sumDigit(int x)
 			even_digit = !even_digit;			// Toggle flag	
 		}
 		
-		
-		//System.out.printf(Arrays.toString(SIN));
-		System.out.println(check_digit);
         int calculate_digit = 10 - (sum%10);
-        System.out.println(sum);
-        System.out.println(calculate_digit);
 		if (calculate_digit == check_digit)
 			return true;
 		return false;
