@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 /**
  * @author Naveed Kawsar
@@ -72,10 +69,34 @@ public class Clock {
 	
 	public void increment(int second)
 	{
-		if ((this.second + second) > 59)
+		this.day += second / (24*60*60);						// 86400 sec/day
+		this.hour += (second % (24*60*60)) / (60*60);			// 3600 sec/hour
+		this.minute += ((second % (24*60*60)) % (60*60)) / 60;	// 60 sec/min
+		this.second += ((second % (24*60*60)) % (60*60)) % 60;
+				
+		if (this.second > 59)				// Adding seconds rolls over to the next minute
 		{
-			this.minute++;
-			this.second += (second - 60);
+			if (this.minute + 1 > 59)		// Adding a minute rolls over to the next hour
+			{
+				if (this.hour + 1 > 23)		// Adding an hour rolls over to the next day
+				{
+					this.day++;
+					this.hour = 0;
+					this.minute = 0;
+					this.second += -60;
+				}
+				else
+				{
+					this.hour++;
+					this.minute = 0;
+					this.second += -60;
+				}
+			}
+			else
+			{
+				this.minute++;
+				this.second += -60;
+			}
 		}
 	}
 	
@@ -110,12 +131,30 @@ public class Clock {
 		// prints: 2:0:0:0 
 		System.out.println(t1.getDay() + ":" + t1.getHour() +":" +t1.getMinute() + ":" + t1.getSecond()); 
 		   
-		// prints the total elapsed time in seconds: 172,800 
-		System.out.printf("The elapsed time in seconds is: %d", t1.calculateTotalSeconds()); 
+		// prints the total elapsed time in seconds: 172,800 seconds
+		System.out.printf("The elapsed time in seconds is: %d\n", t1.calculateTotalSeconds()); 
 		   
 		// REPEAT SIMILAR TESTS FOR t2 
-		//Elapsed time is 3 days, 1 hour, 4 mins and 5 secs 
+		// Elapsed time is 3 days, 1 hour, 4 mins and 5 secs 
 		Clock t2 = new Clock(3, 1, 4, 5); 
+		
+		// prints: 3:1:4:5 
+		System.out.println(t2.getDay() + ":" + t2.getHour() +":" + t2.getMinute() + ":" + t2.getSecond());
+		
+		// increments time t2 by 90172 seconds = 1day:1hour:2min:52sec
+		t2.increment(90172);
+		
+		// prints 4:2:6:57
+		System.out.println(t2.getDay() + ":" + t2.getHour() +":" + t2.getMinute() + ":" + t2.getSecond());
+		
+		// increments time t2 by 5 seconds:
+		t2.increment(5);
+		
+		// prints 4:2:7:2
+		System.out.println(t2.getDay() + ":" + t2.getHour() +":" + t2.getMinute() + ":" + t2.getSecond());
+		
+		// prints the total elapsed time in seconds: 4days:2hours:7min:2sec = 353,222 seconds 
+		System.out.printf("The elapsed time in seconds is: %d\n", t2.calculateTotalSeconds());
 		}
 
 }
