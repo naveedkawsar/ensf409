@@ -1,10 +1,6 @@
 import java.util.Scanner;
 
 /**
- * 
- */
-
-/**
  * @author Naveed Kawsar
  *
  */
@@ -12,6 +8,11 @@ public class MultiArray {
 	
 	private static String[][] sentence_array = new String[3][60];
 	
+	/**
+	 * Load into sentence array and reverse each character
+	 * @param row
+	 * @param sentence
+	 */
 	public void reverse_chars(int row, String sentence)
 	{
 		char[] letters = sentence.toCharArray();	// Convert sentence to an array of chars
@@ -25,6 +26,11 @@ public class MultiArray {
 		}
 	}
 	
+	/**
+	 * Load into sentence array in reverse order of words in original input sentence
+	 * @param row
+	 * @param sentence
+	 */
 	public void reverse_words(int row, String sentence)
 	{
 		String[] words = sentence.split(" ");
@@ -38,33 +44,39 @@ public class MultiArray {
 	    }
 	}
 	
+	/**
+	 * Load into sentence array and capitalize letters whose indices are divisible by 5
+	 * @param row
+	 * @param sentence 
+	 */
 	public void capitalize_fifths(int row, String sentence)
 	{
 		char[] letters = sentence.toCharArray();	// Convert sentence to an array of chars
 		
 		for (int i = 0; i < sentence.length() ; i++)
 		{
-			if ((i % 5) == 0)
+			/* Turn every fifth char upper case, then into strings.  Store in 2D array row */
+			if ((i % 5) == 0)						
 				sentence_array[row][i] = Character.toString(Character.toUpperCase(letters[i]));
 			else
 				sentence_array[row][i] = Character.toString(letters[i]);
-		}
-				
+		}		
 	}
 
+	/**
+	 * Print each row of sentence array to screen
+	 */
 	public void print_multi_array()
 	{
 		for (int i  = 0; i < sentence_array.length; i++)
 		{
-			System.out.print("Sentence " + (i+1) + ":\n");
+			System.out.printf("Sentence %d: \n", (i+1));
 			for (int j = 0; sentence_array[i][j] != null; j++)
 				System.out.print(sentence_array[i][j]);
 			System.out.print("\n");
 		}
 	}
-	/**
-	 * @param args
-	 */
+
 	public static void main(String[] args) {
 
 		MultiArray manipulate_sentences = new MultiArray();
@@ -83,7 +95,5 @@ public class MultiArray {
 		manipulate_sentences.capitalize_fifths(2, sentence_three);
 		
 		manipulate_sentences.print_multi_array();
-
 	}
-
 }
