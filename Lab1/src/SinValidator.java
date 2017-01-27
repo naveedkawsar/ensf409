@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class SinValidator {
@@ -45,6 +46,7 @@ private int sumDigit(int x)
 	public boolean validateSin()
 	{
 		
+		// THIS METHOD DOESN'T WORK. STUDENTS ARE EXPECTED TO COMPLTETE THIS METHOD
 		int check_digit = SIN[SIN.length-1];	// Ninth digit
 		int sum = 0;
 		boolean even_digit = true;				// First bit is the eighth digit
@@ -58,6 +60,7 @@ private int sumDigit(int x)
 			else sum += SIN[i];
 			even_digit = !even_digit;			// Toggle flag	
 		}
+		
 		
         int calculate_digit = 10 - (sum%10);
 		if (calculate_digit == check_digit)
@@ -86,5 +89,4 @@ private int sumDigit(int x)
 			
 		}
 	}
-
 }
