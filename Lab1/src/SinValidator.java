@@ -1,5 +1,5 @@
+
 import java.util.Scanner;
-//import java.util.Arrays;
 
 public class SinValidator {
 
@@ -62,11 +62,7 @@ private int sumDigit(int x)
 		}
 		
 		
-		//System.out.printf(Arrays.toString(SIN));
-		System.out.println(check_digit);
         int calculate_digit = 10 - (sum%10);
-        System.out.println(sum);
-        System.out.println(calculate_digit);
 		if (calculate_digit == check_digit)
 			return true;
 		return false;
@@ -93,5 +89,4 @@ private int sumDigit(int x)
 			
 		}
 	}
-
 }

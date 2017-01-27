@@ -3,3 +3,9 @@
 *.docx
 *.pdf
 *.zip
+.metadata
+.recommenders
+*.classpath
+*.project
+*.settings
+
