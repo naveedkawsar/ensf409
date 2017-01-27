@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 /**
  * @author Naveed Kawsar
@@ -8,10 +5,6 @@
  */
 public class SimpleList {
 
-	/**
-	 * @param args
-	 */
-	
 	private Node headM;
 	private static int sizeM;
 	private class Node {
@@ -19,6 +12,9 @@ public class SimpleList {
 		Node next;
 	}
 	
+	/**
+	 * Default constructor creates empty list
+	 */
 	public SimpleList()
 	{
 		this.headM = null;
@@ -30,6 +26,10 @@ public class SimpleList {
 		return sizeM;
 	}
 	
+	/**
+	 * Adds a node with an item to the end of the list, and increments sizeM
+	 * @param item node data
+	 */
 	public void push_back(final int item)
 	{
 		Node new_node = new Node();
@@ -37,7 +37,7 @@ public class SimpleList {
 		/* Eclipse IDE declares the following conditional code to be dead code */
 	    if(new_node == null)
 	    {
-	        System.out.println("\nNo memory available to create a node\n");
+	        System.out.print("\nNo memory available to create a node\n");
 	        System.exit(1);
 	    }
 	    
@@ -59,6 +59,10 @@ public class SimpleList {
 	    sizeM++;
 	}
 	
+	/**
+	 * Adds a node with an item to the beginning of the list, and increments sizeM
+	 * @param item node data
+	 */
 	public void push_front(final int item)
 	{
 		Node new_node = new Node();
@@ -68,16 +72,17 @@ public class SimpleList {
 	    sizeM++;
 	}
 	
-	public void pop_back(final int item)
-	{
-		
-	}
-	
+	/**
+	 * If n is less than 0 or greater than or equal sizeM
+	 * gives the error message: "Illegal Access" and terminates the program
+	 * @param n the list index
+	 * @return item at the nth position in the list
+	 */
 	public int get(int n)
 	{
 		if(n < 0 || n >= sizeM)
 	    {
-	        System.out.println("\n Illigal Access. program Terminates...\n");
+	        System.out.print("\n Illigal Access. program Terminates...\n");
 	        System.exit(1);
 	    }
 		
@@ -88,11 +93,16 @@ public class SimpleList {
 	    return p.item;
 	}
 	
+	/**
+	 * Puts the value of v at the i-th position
+	 * @param n the list index
+	 * @param v value to be placed into node data
+	 */
 	public void set(int n, int v)
 	{
 		if(n < 0 || n >= sizeM)
 	    {
-	        System.out.println("\n Illigal Access. program Terminates...\n");
+	        System.out.print("\n Illigal Access. program Terminates...\n");
 	        System.exit(1);
 	    }
 		
@@ -103,6 +113,14 @@ public class SimpleList {
 	    p.item = v;
 	}
 	
+	/**
+	 * A node with a copy of theItem is inserted at the nth position, and sizeM 
+	 * will be incremented if the operation of insert was successful.
+	 * if n == sizeM calls push_back
+	 * if n < 0 or n > sizeM returns and does nothing.
+	 * @param itemA node data
+	 * @param n the list index
+	 */
 	public void insert(final int itemA, int n)
 	{
 		if(n < 0 || n > sizeM)
@@ -116,7 +134,7 @@ public class SimpleList {
 			
 			/* Eclipse IDE declares the following conditional code to be dead code */
 			if (new_node == null) {
-				System.out.println("\nNo memory available to create a node\n");
+				System.out.print("\nNo memory available to create a node\n");
 		        System.exit(1);
 			}
 			new_node.item = itemA;
@@ -136,6 +154,11 @@ public class SimpleList {
 		}
 	}
 	
+	/**
+	 * Does nothing if n < 0 or n > sizeM-1. Otherwise, if list is not empty
+	 * sets the node at the position n to be null and garbage-collected
+	 * @param n the list index
+	 */
 	public void remove(int n)
 	{
 		if (headM == null || n < 0 || n >= sizeM)
@@ -164,10 +187,13 @@ public class SimpleList {
 	        before.next = be_deleted.next;
 
 	    }
-	    //delete be_deleted;
+	    be_deleted = null;	/* "delete" be_deleted */
 	    sizeM--;
 	}
 	
+	/**
+	 * Sets each node to null, and size to zero
+	 */
 	public void clear()
 	{
 		Node p = headM;
@@ -175,45 +201,45 @@ public class SimpleList {
 	    while(p != null)
 	    {
 	        headM = headM.next;
-	        //delete p;
+	        p = null;		/* "delete" p */
 	        p = headM;
 	    }
 
-	    headM = null;
-	    sizeM = 0;;
+	    //headM = null;		/* Redundant */
+	    sizeM = 0;
 	}
 	
 	public void print()
 	{
 	    for(int i = 0; i < this.size(); i++)
-	        System.out.println(this.get(i) + "  ");
+	        System.out.print(this.get(i) + "  ");
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		SimpleList list = new SimpleList();
-		System.out.println("\nList just after creation -- is empty.\n");
+		System.out.print("\nList just after creation -- is empty.\n");
 	    
 	    list.push_front(50);
-	    System.out.println("\nAfter calling push_front. list must have: 50\n");
+	    System.out.print("\nAfter calling push_front. list must have: 50\n");
 	    list.print();
 	    
 	    list.push_back(440);
 	    
 	    list.set(0,770);
-	    System.out.println("\nAfter calling push_back and set function list must have: 770  440\n");
+	    System.out.print("\nAfter calling push_back and set function list must have: 770  440\n");
 	    list.print();
 	    
 	    list.push_back(330);
 	    list.push_back(220);
 	    list.push_back(110);
 	    
-	    System.out.println("\nAfter three more calls to push_back, list must have: 770, 440, 330, 220, 110\n");
+	    System.out.print("\nAfter three more calls to push_back, list must have: 770, 440, 330, 220, 110\n");
 	    list.print();
 	    
 	    list.remove(0);
 	    list.remove(2);
-	    System.out.println("\nAfter removing two nodes. list must have: 440, 330, 110\n");
+	    System.out.print("\nAfter removing two nodes. list must have: 440, 330, 110\n");
 	    list.print();
 	    list.insert(40, 3);		//insert node with the value of 40 at the 4th position
 	    list.insert(20, -1);	// do nothing
@@ -221,7 +247,7 @@ public class SimpleList {
 	    list.insert(10, 0);		//insert node with the value of 10 at the 1st position
 	    list.insert(33, 2);		// insert node with the value 33 at the 3rd position
 	    
-	    System.out.println("\nTwo  more nodes inserted, must have: 10, 440, 33, 330, 110, 40\n");
+	    System.out.print("\nTwo  more nodes inserted, must have: 10, 440, 33, 330, 110, 40\n");
 	    list.print();
 	    
 	    list.remove(0);
@@ -230,21 +256,20 @@ public class SimpleList {
 	    list.remove(3);
 	    list.remove(4);
 	    list.remove(5);
-	    System.out.println("\nAfter 6 removes, list must have: 440, 330, 40: \n");
+	    System.out.print("\nAfter 6 removes, list must have: 440, 330, 40: \n");
 	    list.print();
 	    
 	    list.clear();
-	    System.out.println("\nAfter call to clear, list must be empty:\n");
+	    System.out.print("\nAfter call to clear, list must be empty:\n");
 	    list.print();
 	    
 	    list.push_back(331);
 	    list.push_back(221);
 	    list.push_back(111);
 	    
-	    System.out.println("\nAfter three calls to push_back, list must have: 331, 221, 111\n");
+	    System.out.print("\nAfter three calls to push_back, list must have: 331, 221, 111\n");
 	    list.print();
    
 	    return;
 	}
-
 }
