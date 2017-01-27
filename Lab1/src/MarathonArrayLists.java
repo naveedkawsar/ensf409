@@ -10,9 +10,10 @@ import java.util.Scanner;
  *
  */
 public class MarathonArrayLists {
-
 	/**
-	 * @param args
+	 * 
+	 * @param _times ArrayList of runner times
+	 * @return index of fastest runner time
 	 */
 	public static int findFastestRunner(ArrayList <Integer> _times)
 	{
@@ -51,7 +52,7 @@ public class MarathonArrayLists {
 		  } 
 		  // Call the function findFastestRunner and pass the running times array list to it 
 		  int fastest = MarathonArrayLists.findFastestRunner(times); 
-		  // Print the name of the fastestrunner to the console 
+		  // Print the name of the fastest runner to the console 
 		  System.out.println("The fastest runner is " + names.get(fastest) + 
 					", with a time of " + times.get(fastest) + " minutes.");
 		}  
