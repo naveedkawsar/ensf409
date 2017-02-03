@@ -7,7 +7,11 @@ package src;
 public class Board implements Constants {
 	private char theBoard[][];
 	private int markCount;
-
+	
+	/**
+	 * Constructs a 3x3 char array
+	 * Puts spaces in every element
+	 */
 	public Board() {
 		markCount = 0;
 		theBoard = new char[3][];
@@ -18,14 +22,26 @@ public class Board implements Constants {
 		}
 	}
 
+	/**
+	 * 
+	 * @param row	row number on board
+	 * @param col	column number on board
+	 * @return		element (X or O) at the specified index of theBoard
+	 */
 	public char getMark(int row, int col) {
 		return theBoard[row][col];
 	}
 
+	/** 
+	 * @return 		true if 9 marks have been made on board, else false
+	 */
 	public boolean isFull() {
 		return markCount == 9;
 	}
 
+	/**
+	 * @return		true if checkWinner returns 1 for xPlayer, else false
+	 */
 	public boolean xWins() {
 		if (checkWinner(LETTER_X) == 1)
 			return true;
@@ -33,13 +49,19 @@ public class Board implements Constants {
 			return false;
 	}
 
+	/**
+	 * @return 		true if checkWinner returns 1 for oPlayer, else false
+	 */
 	public boolean oWins() {
-		if (checkWinner(LETTER_X) == 1)
+		if (checkWinner(LETTER_O) == 1)
 			return true;
 		else
 			return false;
 	}
 
+	/**
+	 * Displays the 3x3 char array board
+	 */
 	public void display() {
 		displayColumnHeaders();
 		addHyphens();
@@ -54,12 +76,21 @@ public class Board implements Constants {
 		}
 	}
 
+	/**
+	 * 
+	 * @param row	row number on board
+	 * @param col	column number on board
+	 * @param mark	X or O mark to be made in theBoard element
+	 */
 	public void addMark(int row, int col, char mark) {
 		
 		theBoard[row][col] = mark;
 		markCount++;
 	}
 
+	/**
+	 * Fills all elements of theBoard with the space character
+	 */
 	public void clear() {
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 3; j++)
@@ -109,6 +140,10 @@ public class Board implements Constants {
 		return result;
 	}
 
+	/**
+	 * Prints column headers on top of boards
+	 * Prints vertical lines, followed by column numbers
+	 */
 	void displayColumnHeaders() {
 		System.out.print("          ");
 		for (int j = 0; j < 3; j++)
@@ -116,6 +151,9 @@ public class Board implements Constants {
 		System.out.println();
 	}
 
+	/**
+	 * 
+	 */
 	void addHyphens() {
 		System.out.print("          ");
 		for (int j = 0; j < 3; j++)
@@ -123,6 +161,10 @@ public class Board implements Constants {
 		System.out.println("+");
 	}
 
+	/**
+	 * Prints spaces between the different rows 
+	 * to display empty box elements
+	 */
 	void addSpaces() {
 		System.out.print("          ");
 		for (int j = 0; j < 3; j++)

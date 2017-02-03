@@ -10,9 +10,11 @@ public class Game implements Constants {
 	private Board theBoard;
 	private Referee theRef;
 	
+	/**
+	 * Constructor initializes a new Board object (composition)
+	 */
     public Game( ) {
         theBoard  = new Board();
-
 	}
     
     public void appointReferee(Referee r) throws IOException {
@@ -20,6 +22,15 @@ public class Game implements Constants {
     	theRef.runTheGame();
     }
 	
+    /**
+     * Initializes two instances of players
+     * Designates player 1 to be the X- player
+     * Designates player 2 to be the O- player
+     * Initializes referee
+     * 
+     * @param args
+     * @throws IOException
+     */
 	public static void main(String[] args) throws IOException {
 		Referee theRef;
 		Player xPlayer, oPlayer;
