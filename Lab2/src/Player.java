@@ -1,6 +1,3 @@
-/**
- * 
- */
 package src;
 
 import java.util.Scanner;
@@ -62,31 +59,30 @@ public class Player {
 	public void makeMove()
 	{
 		Scanner scan = new Scanner(System.in);
-		System.out.printf("%s, what row should your next %s be placed in?", this.name, this.mark);
+		System.out.printf("%s, what row should your next %s be placed in?  ", this.name, this.mark);
 		int row = scan.nextInt();
-		System.out.printf("%s, what column should your next %s be placed in?", this.name, this.mark);
+		System.out.printf("%s, what column should your next %s be placed in?  ", this.name, this.mark);
 		int col = scan.nextInt();
 		
 		board.addMark(row, col, this.mark);
 	}
+	/* Setter methods */
 	
 	/**
 	 * Connects the other player to this player
-	 * @param _opponent
+	 * @param _opponent	Player opponent
 	 */
 	public void setOpponent(Player _opponent)
 	{
 		this.opponent = _opponent;
 	}
 	
+	/**
+	 * @param _board	Tic-Tac-Toe board
+	 */
 	public void setBoard(Board _board)
 	{
 		this.board = _board;
 	}
-	/*
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-*/
+	
 }

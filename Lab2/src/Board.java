@@ -1,9 +1,5 @@
 package src;
 
-
-//STUDENTS SHOULD ADD CLASS COMMENT, METHOD COMMENTS, FIELD COMMENTS 
-
-
 public class Board implements Constants {
 	private char theBoard[][];
 	private int markCount;
@@ -23,7 +19,7 @@ public class Board implements Constants {
 	}
 
 	/**
-	 * 
+	 * Retrieves mark made in board index
 	 * @param row	row number on board
 	 * @param col	column number on board
 	 * @return		element (X or O) at the specified index of theBoard
@@ -77,7 +73,7 @@ public class Board implements Constants {
 	}
 
 	/**
-	 * 
+	 * Adds mark to board index
 	 * @param row	row number on board
 	 * @param col	column number on board
 	 * @param mark	X or O mark to be made in theBoard element
@@ -98,10 +94,22 @@ public class Board implements Constants {
 		markCount = 0;
 	}
 
+	/**
+	 * Checks if for a given mark, three-in-row exists
+	 * Checks first for rows, then columns, then diagonals
+	 * @param mark		Mark (X or O) of current player to checked if winner
+	 * @return			1 if three-in-a-row exists, 0 otherwise
+	 */
 	int checkWinner(char mark) {
 		int row, col;
 		int result = 0;
 
+		/**
+		 * Checks if a three-in-a-row exists in the rows
+		 * Cycles through all the columns for all the rows
+		 * Return value set to 1 if three-in-a-row
+		 * 0 otherwise
+		 */
 		for (row = 0; result == 0 && row < 3; row++) {
 			int row_result = 1;
 			for (col = 0; row_result == 1 && col < 3; col++)
@@ -111,7 +119,12 @@ public class Board implements Constants {
 				result = 1;
 		}
 
-		
+		/**
+		 * Checks if a three-in-a-row exists in the columns
+		 * Cycles through all the rows for all the columns
+		 * Return value set to 1 if three-in-a-row
+		 * 0 otherwise
+		 */
 		for (col = 0; result == 0 && col < 3; col++) {
 			int col_result = 1;
 			for (row = 0; col_result != 0 && row < 3; row++)
@@ -121,6 +134,7 @@ public class Board implements Constants {
 				result = 1;
 		}
 
+		/* Check if diagonal three-in-a-row exists */
 		if (result == 0) {
 			int diag1Result = 1;
 			for (row = 0; diag1Result != 0 && row < 3; row++)
@@ -152,7 +166,7 @@ public class Board implements Constants {
 	}
 
 	/**
-	 * 
+	 * Prints horizontal lines to separate to separate rows 
 	 */
 	void addHyphens() {
 		System.out.print("          ");
@@ -162,7 +176,7 @@ public class Board implements Constants {
 	}
 
 	/**
-	 * Prints spaces between the different rows 
+	 * Prints spaces between the different columns 
 	 * to display empty box elements
 	 */
 	void addSpaces() {

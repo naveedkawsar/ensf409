@@ -2,9 +2,6 @@ package src;
 
 import java.io.*;
 
-//STUDENTS SHOULD ADD CLASS COMMENT, METHOD COMMENTS, FIELD COMMENTS 
-
-
 public class Game implements Constants {
 
 	private Board theBoard;
@@ -17,12 +14,20 @@ public class Game implements Constants {
         theBoard  = new Board();
 	}
     
+    /**
+     * Passes in instance of referee
+     * Calls runTheGame method to initialize the game
+     * by setting opponents and letting current player play their turn
+     * @param r		Instance of referee 
+     * @throws IOException
+     */
     public void appointReferee(Referee r) throws IOException {
         theRef = r;
     	theRef.runTheGame();
     }
 	
     /**
+     * Initializes new game
      * Initializes two instances of players
      * Designates player 1 to be the X- player
      * Designates player 2 to be the O- player

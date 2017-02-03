@@ -35,7 +35,7 @@ class Polygon {
             //   Line 2: starts at (50, 100), and ends at (100, 30)
             //   Line 3: starts at (100, 30), and ends at (20, 30)
             //
-     
+
         	this.getLine();		// Initialize iterator object, it, to traverse over the list
         	
     		String s = "\nThe lines of the polygon " + this.objID +" are :\n";

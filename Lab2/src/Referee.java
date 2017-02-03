@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package src;
 
 /**
@@ -30,25 +28,30 @@ public class Referee {
 		this.xPlayer.play();
 	}
 	
+	/* Setter methods */
+	
+	/**
+	 * @param _board	Tic-Tac-Toe board
+	 */
 	public void setBoard(Board _board)
 	{
 		this.board = _board;
 	}
 	
+	/**
+	 * @param _oPlayer	Player 2 (with mark O)
+	 */
 	public void setoPlayer(Player _oPlayer)
 	{
 		this.oPlayer = _oPlayer;
 	}
 	
+	/**
+	 * @param _xPlayer	Player 1 (with mark X)
+	 */
 	public void setxPlayer(Player _xPlayer)
 	{
 		this.xPlayer = _xPlayer;
 	}
-	/**
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}*/
 
 }
