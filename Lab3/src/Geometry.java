@@ -5,7 +5,40 @@ import java.util.TreeSet;
 public class Geometry{
 	private TreeSet <Shape> shapes;
 	
+	/* Default constructor to initialize TreeSet
+	 * Otherwise throws NullPointerException
+	 */
+	Geometry()
+	{
+		shapes = new TreeSet <Shape>();
+	}
 	
+	public void add(Shape _shape)
+	{
+		shapes.add(_shape);
+	}
+	
+	private void showAll()
+	{
+		/* Implicit iterator */
+		for (Shape element : shapes) {
+		    System.out.println(element.toString());
+		}
+		
+		/* Explicit iterator way - also works */
+		/*
+		for(Iterator<Shape> iter = shapes.iterator(); iter.hasNext(); )
+		{
+			Shape item = iter.next();
+		    System.out.printf("%s\n", item.toString());
+		}*/
+	}
+	
+	private void calculator(Shape shape)
+	{
+		System.out.printf("The area, perimeter, and volume of %s are: %.2f, %.2f, %.2f.\n", shape.getName(), shape.area(), shape.perimeter(), shape.volume());
+	}
+
 	public static void main(String[] args) {
 		Rectangle r1 = new Rectangle(3.0, 4.0, 5.0, 6.0, "R1", new Colour("Black"));
         Circle c1 = new Circle (13.0, 14.0, 15.0, "C1",new Colour ("Green"));
@@ -22,10 +55,9 @@ public class Geometry{
         System.out.println(p1);
         System.out.println(p2);
         
-        
         //      SECTION 2: THE FOLLOWING CODE SEGMENT MUST BE UNCOMMENTED ONLY
         //      FOR EXERCISE 3
-        /*
+        
          Geometry demo = new Geometry();
          System.out.println("\nAdding Rectangle, Circle, and Prism objects to the list... ");
          demo.add(r1);
@@ -44,8 +76,5 @@ public class Geometry{
          while(it.hasNext()){
         	demo.calculator(it.next());
          }
-         
-         */
-
 	}
 }
