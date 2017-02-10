@@ -59,6 +59,6 @@ public class SmartPlayer extends BlockingPlayer{
 		if (row_win == 2 | col_win == 2 | diag_win >= 2 )
 			return true;
 		
-		return super.testForBlocking(row, col);		// Calls super's testForBlocking otherwise
+		else return super.testForBlocking(row, col);		// Calls super's testForBlocking otherwise
 	}
 }
