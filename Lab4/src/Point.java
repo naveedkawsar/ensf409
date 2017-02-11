@@ -1,6 +1,6 @@
 
 
-class Point 
+class Point implements Cloneable
 {
 	private Colour colour;
 	private Double xCoordinate, yCoordinate;
@@ -10,6 +10,12 @@ class Point
 		colour = (c);
 		xCoordinate = a;
 		yCoordinate = b;
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		Point temp_point = (Point)super.clone();
+		temp_point.colour = (Colour)colour.clone();
+		return temp_point;
 	}
 	
     @Override

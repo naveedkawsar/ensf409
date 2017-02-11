@@ -5,10 +5,7 @@ class Rectangle extends Shape
 	protected Double width, length;
 	
 	public Object clone() throws CloneNotSupportedException {
-		Rectangle temp_rect = (Rectangle)super.clone();
-		temp_rect.width = this.width;
-		temp_rect.length = this.length;
-		return temp_rect;
+		return super.clone();
 	}
 	
 	public Rectangle(Double x_origin, Double y_origin, Double newlength, Double newwidth, String  name, Colour colour){

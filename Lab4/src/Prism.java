@@ -5,9 +5,7 @@ class Prism extends Rectangle
 	private Double height;
 	
 	public Object clone() throws CloneNotSupportedException {
-		Prism temp_prism = (Prism)super.clone();
-		temp_prism.height = this.height;
-		return temp_prism;
+		return (Prism)super.clone();
 	}
 	
 	public Prism(Double x, Double y, Double l, Double w, Double h, String  name, Colour colour)

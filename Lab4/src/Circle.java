@@ -5,9 +5,8 @@ class Circle extends Shape
 	private Double radius;
 	
 	public Object clone() throws CloneNotSupportedException {
-		Circle temp_circle = (Circle)super.clone();
-		temp_circle.radius = this.radius;
-		return temp_circle;
+		return super.clone();
+
 	}
 
 	Circle(Double x_origin, Double y_origin, Double newradius,  String name, Colour colour){

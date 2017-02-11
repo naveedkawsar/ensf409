@@ -1,5 +1,5 @@
 
-class Text
+class Text implements Cloneable
 {
 	
 	private final Double DEFAULT_SIZE = 10.0;
@@ -13,6 +13,10 @@ class Text
 	public Text(String text) {
        this.text = text;
        fontSize = DEFAULT_SIZE;
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 	
 	public Double getFontSize(){

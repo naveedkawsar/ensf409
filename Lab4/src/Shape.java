@@ -8,7 +8,10 @@ abstract class Shape implements Cloneable
 	abstract protected Double volume();
 	
 	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		Shape temp_shape = (Shape)super.clone();
+		temp_shape.origin = (Point)origin.clone();
+		temp_shape.name = (Text)name.clone();
+		return temp_shape;
 	}
 	
 	protected Shape(Double x_origin, Double y_origin, String name, Colour colour){
