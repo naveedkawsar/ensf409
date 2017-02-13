@@ -45,4 +45,24 @@ class Prism extends Rectangle
 		String s = super.toString()+ "\nheight: " + height;
 		return s;
 	}
+	
+	public void shrink(double divisor) throws SizeFactorException {
+		if (divisor < LIMIT) {
+			throw new SizeFactorException("Exception -- " + this.getName() 
+			+ " divisor argument (" + divisor 
+			+ ") less than Size Factor limit, "+ LIMIT);
+		}
+		super.shrink(divisor);
+		set_height(this.height / divisor);
+	}
+	
+	public void enlarge(double multiplier) throws SizeFactorException {
+		if (multiplier < LIMIT) {
+			throw new SizeFactorException("Exception -- " + this.getName() 
+			+ " multiplier argument (" + multiplier
+			+ ") less than Size Factor limit, " + LIMIT);
+		}
+		super.enlarge(multiplier);
+		set_height(this.height * multiplier);
+	}
 }

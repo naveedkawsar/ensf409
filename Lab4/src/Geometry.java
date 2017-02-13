@@ -25,7 +25,7 @@ public class Geometry{
         
 // THE FOLLOWING CODE SEGMENT MUST BE UNCOMMENTED ONLY FOR EXERCISE A in Lab 5
 // EXERCISE_1_BEGINS
-
+        /*
         System.out.println("\n\nMaking r1 copy of r2, c1 copy of c2, p1 copy of p2:");
         //r1 = r2;
         r1 = (Rectangle)r2.clone();
@@ -53,13 +53,13 @@ public class Geometry{
         System.out.println(c1);  
         System.out.println("\nHere are values for p1 after trying to make it a copy of p2:");
         System.out.println(p1); 
-
+        */
 // EXERCISE_1_ENDS
 
         
 // THE FOLLOWING CODE SEGMENT MUST BE UNCOMMENTED ONLY FOR EXERCISE 2 in Lab 5
 // EXERCISE_2_BEGINS
-/*
+
         try{
 
         	  r1.enlarge(2.0);
@@ -89,7 +89,7 @@ public class Geometry{
       
         System.out.println("\nHere are values for p1 after calling shrink (0.5) -- UNCHANGED:");
         System.out.println(p1); 
- */
+ 
 // EXERCISE_2_ENDS
                
 	}

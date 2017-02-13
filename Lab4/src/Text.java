@@ -39,6 +39,26 @@ class Text implements Cloneable
 	public String toString(){
 		return (text);
 	}
+	
+	public void shrink(double divisor) throws SizeFactorException {
+		/* Note that class Text does not implement interface Resizable */
+		if (divisor < Resizable.LIMIT) {
+			throw new SizeFactorException("Exception -- " + this.toString() 
+			+ " divisor argument (" + divisor 
+			+ ") less than Size Factor limit, "+ Resizable.LIMIT);
+		}
+		this.fontSize /= divisor;
+	}
+	
+	public void enlarge(double multiplier) throws SizeFactorException {
+		/* Note that class Text does not implement interface Resizable */
+		if (multiplier < Resizable.LIMIT) {
+			throw new SizeFactorException("Exception -- " + this.toString() 
+			+ " multiplier argument (" + multiplier
+			+ ") less than Size Factor limit, " + Resizable.LIMIT);
+		}
+		this.fontSize *= multiplier;
+	}
 
        
 }

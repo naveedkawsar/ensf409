@@ -1,5 +1,5 @@
 
-abstract class Shape implements Cloneable
+abstract class Shape implements Accessible, Cloneable, Resizable
 {
 	protected Point origin;
 	protected Text name;
@@ -25,7 +25,6 @@ abstract class Shape implements Cloneable
 		return origin;
 	}
 	
-	
 	protected  Double distance(   Shape  other)
 	{
 		return origin.distance(other.origin);
@@ -35,7 +34,6 @@ abstract class Shape implements Cloneable
 	{
 		return Point.distance(a.origin, b.origin);
 	}
-	
 	
 	protected void  move(Double dx, Double dy)
 	{
@@ -49,5 +47,12 @@ abstract class Shape implements Cloneable
 		return s;
 	}
 
+	public String getName() {
+		return name.getText();
+	}
+	
+	public void setName(String newName) {
+		name.setText(newName);
+	}
 }
 

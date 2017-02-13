@@ -39,5 +39,25 @@ class Rectangle extends Shape
 		String s = super.toString()+ "\nWidth: " + width + "\nLength: " + length;
 		return s;
 	}
+	
+	public void shrink(double divisor) throws SizeFactorException {
+		if (divisor < LIMIT) {
+			throw new SizeFactorException("Exception -- " + this.getName() 
+			+ " divisor argument (" + divisor 
+			+ ") less than Size Factor limit, "+ LIMIT);
+		}
+		this.width /= divisor;
+		this.length /= divisor;
+	}
+	
+	public void enlarge(double multiplier) throws SizeFactorException {
+		if (multiplier < LIMIT) {
+			throw new SizeFactorException("Exception -- " + this.getName() 
+			+ " multiplier argument (" + multiplier
+			+ ") lesss than Size Factor limit, " + LIMIT);
+		}
+		this.width *= multiplier;
+		this.length *= multiplier;
+	}
         	
 }
