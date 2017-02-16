@@ -1,5 +1,7 @@
 
-public class SimpleThread extends Thread{
+//public class SimpleThread extends Thread{ /* Modify to use interface instead of inheritance */
+public class SimpleThread implements Runnable{
+
 
 	Resource resource;
 	
@@ -8,7 +10,7 @@ public class SimpleThread extends Thread{
 			try {
 			System.out.println(resource.increment());
 			
-			Thread.sleep(1);
+			Thread.sleep(200);
 			
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -23,8 +25,17 @@ public class SimpleThread extends Thread{
 
 	public static void main(String args[]) {
 		Resource resource = new Resource();
+		
+		/* Modify the code below to make use of the Runnable interface */
+		/*
 		Thread t = new SimpleThread(resource);
 		Thread s = new SimpleThread(resource);
+		*/
+		SimpleThread t_simple = new SimpleThread(resource);
+		SimpleThread s_simple = new SimpleThread(resource);
+		
+		Thread t = new Thread(t_simple);
+		Thread s = new Thread(s_simple);
 		
 		t.start();
 		s.start();
