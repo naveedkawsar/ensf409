@@ -31,8 +31,8 @@ public class SimpleThread implements Runnable{
 		Thread t = new SimpleThread(resource);
 		Thread s = new SimpleThread(resource);
 		*/
-		SimpleThread t_simple = new SimpleThread(resource);
-		SimpleThread s_simple = new SimpleThread(resource);
+		Runnable t_simple = new SimpleThread(resource);
+		Runnable s_simple = new SimpleThread(resource);
 		
 		Thread t = new Thread(t_simple);
 		Thread s = new Thread(s_simple);
