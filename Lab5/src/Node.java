@@ -1,8 +1,8 @@
 
-class Node
+class Node <TYPE>
 {
 	Integer keyM;
-	Double itemM;
+	TYPE itemM;
 	Node nextM;
 	
 	public Node()
@@ -12,7 +12,7 @@ class Node
 		nextM  = null;
 	
 	}
-	public Node(Double itemA, Integer keyA, Node  nextA)
+	public Node(TYPE itemA, Integer keyA, Node  nextA)
 	
 	{
 		itemM= itemA ;
