@@ -104,8 +104,8 @@ class LinkedList <TYPE> {
 	    sizeM--;
 	  }
 	  else {
-	    Node before = headM;
-	    Node maybe_doomed = headM.nextM;
+	    Node<TYPE> before = headM;
+	    Node<TYPE> maybe_doomed = headM.nextM;
 	    while(maybe_doomed != null && keyA.compareTo(maybe_doomed.keyM) >0 ) {
 	      before = maybe_doomed;
 	      maybe_doomed = maybe_doomed.nextM;
