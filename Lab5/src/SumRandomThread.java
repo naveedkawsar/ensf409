@@ -1,9 +1,12 @@
+
 /**
  * @author Naveed Kawsar
  *
  */
 public class SumRandomThread implements Runnable {
 	volatile static int sum = 0;
+	int value;
+	
 	public void run() {
 		try {
 			generate_and_sum();
@@ -17,13 +20,13 @@ public class SumRandomThread implements Runnable {
 	synchronized void generate_and_sum() {
 		// Reusing provided code from previous labs
 		RandomGenerator rand_num = new RandomGenerator();
-		int value = rand_num.discrete(1, 100);
+		value = rand_num.discrete(1, 100);
 		System.out.printf("%d ", value);
 		sum += value;
 	}
 
 	public static void main(String[] args) {
-		// Template -- one potential solution
+		// Pattern -- one potential solution
 		/*
 		Runnable r1 = new SumRandomThread();
 		Thread t1 = new Thread(r);
@@ -66,6 +69,7 @@ public class SumRandomThread implements Runnable {
 				e.printStackTrace();
 			}
 		}
+
 		System.out.printf("\nThe sum of the %d integers is: %d\n", t.length, sum);
 	}
 }
