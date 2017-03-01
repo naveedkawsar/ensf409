@@ -26,10 +26,9 @@ public class SumRandomThreadModified implements Runnable {
 	
 	public static void main(String[] args) {
 		list = Collections.synchronizedList(new ArrayList<Integer>());
-		//list = new ArrayList<>(); /* Using  a non-synchronized ArrayList doesn't change the output */
 		Runnable r[] = new Runnable[5];
 		for (int i = 0; i < r.length; i++) {
-			r[i] = new SumRandomThread();
+			r[i] = new SumRandomThreadModified();
 		}
 		
 		Thread t[] = new Thread[r.length];
@@ -50,15 +49,18 @@ public class SumRandomThreadModified implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		/*Two ways to find sum: neither works
+		
+		System.out.printf("The %d random integers are: ", list.size());
+		/*Two ways to find sum: both work
 		 * Method one
 		 */
 		int sum = 0;
 		for (Integer m : list) {
+			System.out.printf("%d ", m);
             sum +=m;
 		}
 		/* Method two */
-		//sum = list.stream().mapToInt(e -> e).sum();
-		System.out.printf("\nThe sum of the integers is: %d\n", sum);
+		//int sum = list.stream().mapToInt(e -> e).sum();
+		System.out.printf("\nThe sum of the %d integers is: %d\n", list.size(), sum);
 	}
 }
