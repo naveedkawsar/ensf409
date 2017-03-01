@@ -10,3 +10,5 @@
 *.settings
 doc
 bin
+class-exercises
+*/.gitignore
