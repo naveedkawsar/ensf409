@@ -1,4 +1,4 @@
-package inlab2;
+package exercise2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +26,7 @@ public class DateServer {
 			socketInput = new BufferedReader(new InputStreamReader(aSocket.getInputStream()));
 			socketOutput = new PrintWriter(aSocket.getOutputStream(), true);
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
