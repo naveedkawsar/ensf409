@@ -3,7 +3,6 @@
  */
 package exercise4;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -20,20 +19,21 @@ import java.sql.Statement;
 class Database {
 	final static String USER = "root"; 
 	final static String PASSWORD = "root"; 
-	final static String HOSTNAME = "localhost"; 
-	final static String PORT = "3306"; 
-	final static String SID = ""; 
+	
+	final String postalCodeRegex = "^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$";
+	//final String phoneRegex = "^\d{3}-\d{3}-\d{4}$";
+	final String phoneNumberRegex = "^[0-9]{3}-[0-9]{3}-[0-9]{4}$";
+
 	// Attributes 
 	private Connection connect; 
 	private Statement statement; 
-	private ResultSet resultSet; 
+	private ResultSet resultSet;
+
 	public void initializeConnection() { 
 	    try { 
 	      // Register JDBC driver
 	      Driver driver = new com.mysql.jdbc.Driver(); 
 	      DriverManager.registerDriver(driver);
-	      //jdbc:mysql://
-	      // jdbc:oracle:thin:@HOSTNAME:PORT:SID
 	      
 	      // Open a connection
 	     // String url = "jdbc:mysql:@" + HOSTNAME + ":" + PORT + ":" + SID; 
@@ -46,13 +46,14 @@ class Database {
 	      
 	      // Execute a query to create database
 	      String create_table = "CREATE TABLE IF NOT EXISTS clients ("
-	      		+ " id NUMERIC(4) PRIMARY KEY,"
-	      		+ " firstname VARCHAR(20) NOT NULL,"
-		    	+ " lastname VARCHAR(20) NOT NULL,"
-		    	+ " address VARCHAR(50) NOT NULL,"
-		    	+ " postalCode CHAR(12) NOT NULL,"
-		    	+ " phoneNumber CHAR(7) NOT NULL,"
-		    	+ " clientType CHAR(1) NOT NULL);";
+	      		+ " id int(4) AUTO_INCREMENT,"
+	      		+ " firstname varchar(20) NOT NULL,"
+		    	+ " lastname varchar(20) NOT NULL,"
+		    	+ " address varchar(50) NOT NULL,"
+		    	+ " postalCode char(12) NOT NULL,"
+		    	+ " phoneNumber char(7) NOT NULL,"
+		    	+ " clientType char(1) NOT NULL,"
+		    	+ " PRIMARY KEY(id));";
 	      statement.execute(create_table);
 	      
 	    } catch (SQLException e) { 
@@ -79,12 +80,11 @@ class Database {
 	//---------------------------------------------------------- 
 	//---------------PREPARED STATEMENT--------------------- 
 	//---------------------------------------------------------- 
-	  public void selectClientByID(BigDecimal id) { 
+	public void selectClientByID(int id) { 
 	    try { 
 	      String query = "SELECT * FROM users where id= ?"; 
 	      PreparedStatement pStat = connect.prepareStatement(query); 
-	      pStat.setString(1, "id"); 
-	      pStat.setString(2, "123456"); 
+	      pStat.setInt(1, id); 
 	      resultSet = pStat.executeQuery(); 
 	      while (resultSet.next()) { 
 	        System.out.println(resultSet.getString("firstname") + " " +  
@@ -95,9 +95,9 @@ class Database {
 	    } catch (SQLException e) { 
 	      e.printStackTrace(); 
 	    } 
-	  }
+	}
 	  
-	  public void selectClientByName(String lastname) { 
+	public void selectClientByName(String lastname) { 
 		    try { 
 		      String query = "SELECT * FROM users where lastname= ?"; 
 		      PreparedStatement pStat = connect.prepareStatement(query); 
@@ -112,38 +112,45 @@ class Database {
 		    } catch (SQLException e) { 
 		      e.printStackTrace(); 
 		    } 
-		  }
+	}
 	  
-	  public void selectClientByType(String clientType) { 
-		    try { 
-		      String query = "SELECT * FROM users where clientType= ?"; 
-		      PreparedStatement pStat = connect.prepareStatement(query); 
-		      pStat.setString(1, clientType); 
-		      resultSet = pStat.executeQuery(); 
-		      while (resultSet.next()) { 
+	public void selectClientByType(String clientType) { 
+		  try { 
+			String query = "SELECT * FROM users where clientType= ?"; 
+			PreparedStatement pStat = connect.prepareStatement(query); 
+			pStat.setString(1, clientType); 
+			resultSet = pStat.executeQuery(); 
+			while (resultSet.next()) { 
 		        System.out.println(resultSet.getString("firstname") + " " +  
 		                                        resultSet.getString("lastname") + " " + 
 		                                        resultSet.getString("clientType")); 
-		      } 
-		      pStat.close(); 
+			} 
+			pStat.close(); 
 		    } catch (SQLException e) { 
 		      e.printStackTrace(); 
 		    } 
-		  }
+	}
 	  
-	  public void insertClient(
-			  BigDecimal id, String firstname, 
+	public void insertClient(
+			  int id, String firstname, 
 			  String lastname, String address, String postalCode, 
 			  String phoneNumber, String clientType) { 
-		  
-		  // TODO: Check formatting of arguments
+		  if ( !(phoneNumber.matches(phoneNumberRegex)) ) {
+			  System.err.print("Invalid phone number or phone number format\n");
+		  }
+		  if ( !(postalCode.matches(postalCodeRegex)) ) {
+			  System.err.print("Invalid postal code or postal code format\n");
+		  }
+		  if ( clientType != "C"  || clientType != "R" ) {
+			  System.err.print("Invalid client type\n");
+		  }
 	    try { 
 	      String query = 
 	    		  "INSERT INTO Clients "
 	      		+ "(id, firstname, lastname, address, postalCode, phoneNumber, clientType) "
 	      		+ "values (?,?,?,?,?,?,?)"; 
 	      PreparedStatement pStat = connect.prepareStatement(query); 
-	      pStat.setBigDecimal(1, id);
+	      pStat.setInt(1, id);
 	      pStat.setString(2, firstname); 
 	      pStat.setString(3, lastname);
 	      pStat.setString(4, address);
@@ -151,33 +158,64 @@ class Database {
 	      pStat.setString(6, phoneNumber);
 	      pStat.setString(7, clientType);
 	      
-	      //int rowCount = pStat.executeUpdate(); 
-	      //System.out.println("row Count = " + rowCount); 
+	      int rowCount = pStat.executeUpdate(); 
+	      System.out.println("row Count = " + rowCount); 
 	      pStat.close();
 	    } catch (SQLException e) { 
 		      e.printStackTrace(); 
 		}
 	  }
 	  
-	  public void deleteUser(BigDecimal id) { 
-		    try { 
+	public void updateClient(
+			  int id, String firstname, 
+			  String lastname, String address, String postalCode, 
+			  String phoneNumber, String clientType) { 
+		  if ( !(phoneNumber.matches(phoneNumberRegex)) ) {
+			  System.err.print("Invalid phone number or phone number format\n");
+		  }
+		  if ( !(postalCode.matches(postalCodeRegex)) ) {
+			  System.err.print("Invalid postal code or postal code format\n");
+		  }
+		  if ( clientType != "C"  || clientType != "R" ) {
+			  System.err.print("Invalid client type\n");
+		  }
+	    try { 
+	      String query = 
+	    		  "UPDATE Clients"
+	    		+ "SET firstname = ?, lastname = ?, address = ?, "
+	    				  + "postalCode = ?, phoneNumber = ?, clientType = ? "
+	    		+ "where id = ?"; 
+	      PreparedStatement pStat = connect.prepareStatement(query); 
+	      pStat.setString(1, firstname); 
+	      pStat.setString(2, lastname);
+	      pStat.setString(3, address);
+	      pStat.setString(4, postalCode);
+	      pStat.setString(5, phoneNumber);
+	      pStat.setString(6, clientType);
+	      pStat.setInt(7, id);
+	      
+	      int rowCount = pStat.executeUpdate(); 
+	      System.out.println("row Count = " + rowCount); 
+	      pStat.close();
+	    } catch (SQLException e) { 
+		      e.printStackTrace(); 
+		}
+	  }
+	
+	public void deleteClient(int id) { 
+		  try { 
 		      String delete = "DELETE FROM Clients WHERE id = ?";
 		      PreparedStatement pStat = connect.prepareStatement(delete); 
-		      pStat.setBigDecimal(1, id);
+		      pStat.setInt(1, id);
 		      int rowCount = pStat.executeUpdate(); 
 		      System.out.println("row Count = " + rowCount); 
-		    } catch (SQLException e) { 
+		  } catch (SQLException e) { 
 		      e.printStackTrace(); 
-		    } 
 		  } 
-	/**
-	 * @param args
-	 */
+	} 
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Database database = new Database(); 
-	    database.initializeConnection(); 
-
+	    database.initializeConnection();
 	}
-
 }
