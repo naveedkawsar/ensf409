@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 
 /**
  * @author Naveed Kawsar
@@ -32,6 +33,13 @@ public class DateClient {
 		String line, response;
 		while (true) {
 			try {
+				/* Date returns incorrect value becuase the
+				 * SimpleDateFormat for days should be "dd" 
+				 * in DateServer, such that
+				 * SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+				 * However, DateServer code provided by instructor
+				 * and kept unchanged.
+				 */
 				System.out.println("Please select an option (DATE/TIME) ");
 				line = stdIn.readLine();
 				
