@@ -1,7 +1,9 @@
+package exercise3;
 /**
  * Started by M. Moussavi
  * March 2015
- * Completed by: STUDENT(S) NAME
+ * Completed by: Naveed Kawsar
+ * April 2017
  */
 
 import java.io.FileInputStream;
@@ -42,12 +44,18 @@ public class WriteRecord {
 	}
     
 	/**
-	 * Opens a file input stream, using the data field texFileIn
+	 * Opens a file input stream, using the data field textFileIn
 	 * @param textFileName name of text file to open
 	 */
 	public void openFileInputStream(String textFileName) {
         
      // TO BE COMPLETED BY THE STUDENTS
+		try {
+			textFileIn = new Scanner( new FileInputStream(textFileName));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -57,6 +65,14 @@ public class WriteRecord {
 	public void openObjectOutputStream(String objectFileName) {
         
     // TO BE COMPLETED BY THE STUDENTS
+		try
+		{         
+			objectOut = new ObjectOutputStream( new FileOutputStream( objectFileName ) );      
+		}  
+		catch ( IOException ioException )     
+		{         
+			ioException.printStackTrace();     
+		} 
         
 	}
 	
@@ -85,9 +101,24 @@ public class WriteRecord {
 			textFileIn.nextLine();   // read the dashed lines and do nothing
             
             // THE REST OF THE CODE TO BE COMPLETED BY THE STUDENTS
+			try {
+				objectOut.writeObject(record);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		// YOUR CODE GOES HERE
+		try // close file
+		{
+		if (objectOut != null)
+			objectOut.close();
+		} // end try
+		catch(IOException ioException)
+		{
+			ioException.printStackTrace();
+		} // end catch
 	}
 
 	public static void main(String[] args) throws IOException {

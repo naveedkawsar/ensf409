@@ -1,7 +1,9 @@
+package exercise3;
 /** 
  * Started by M. Moussavi
  * March 2015
- * Completed by: STUDENT(S) NAME
+ * Completed by: Naveed Kawsar
+ * April 2017
  */
 
 import java.io.EOFException;
@@ -43,12 +45,24 @@ public class ReadRecord {
                 
                 
                 // TO BE COMPLETED BY THE STUDENTS
+            	record = ( MusicRecord ) input.readObject();
+            	// display record contents on the screen
+            	System.out.printf( "%-6d%-20s%-12s%4.2f\n",   
+            	record.getYear(), record.getSongName(), 
+            	record.getSingerName(), record.getPurchasePrice() );
                 
            
             }   // END OF WHILE
         }
                 // ADD NECESSARY catch CLAUSES HERE
-
+        catch ( EOFException eof) 
+        {
+        	System.out.print("End of file reached.\n");
+        } catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
+		} 
     }           // END OF METHOD 
     
     

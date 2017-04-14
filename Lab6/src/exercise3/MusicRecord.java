@@ -1,9 +1,12 @@
+package exercise3;
+
+import java.io.Serializable;
 
 /**
  *   A simple class that represents a music record
  *
  */
-class MusicRecord
+class MusicRecord implements Serializable
 	{
 		private int year_recorded;
 		private String songName;
